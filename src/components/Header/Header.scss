@@ -1,0 +1,11 @@
+.Header {
+  padding: 60px;
+  background-color: var(--surface);
+
+  &__title {
+    font-size: 60px;
+    text-align: center;
+    color: var(--green)
+  }
+}
+
