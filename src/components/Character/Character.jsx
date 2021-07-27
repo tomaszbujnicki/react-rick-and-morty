@@ -1,10 +1,4 @@
 import React from 'react';
-import {
-  DescriptionList,
-  Item,
-  ItemKey,
-  ItemValue,
-} from '../DescriptionList/DescriptionList';
 import './Character.scss';
 
 const Character = ({ character }) => {
@@ -15,28 +9,28 @@ const Character = ({ character }) => {
       </div>
       <div className="Character__content">
         <h1 className="Character__title">{character.name}</h1>
-        <DescriptionList>
-          <Item>
-            <ItemKey>Species</ItemKey>
-            <ItemValue>{character.species}</ItemValue>
-          </Item>
-          <Item>
-            <ItemKey>Gender</ItemKey>
-            <ItemValue>{character.gender}</ItemValue>
-          </Item>
-          <Item>
-            <ItemKey>Status</ItemKey>
-            <ItemValue>{character.status}</ItemValue>
-          </Item>
-          <Item>
-            <ItemKey>Origin</ItemKey>
-            <ItemValue>{character.origin.name}</ItemValue>
-          </Item>
-          <Item>
-            <ItemKey>Location</ItemKey>
-            <ItemValue>{character.location.name}</ItemValue>
-          </Item>
-        </DescriptionList>
+        <dl>
+          <div className="Character__item">
+            <dt className="Character__key">Species</dt>
+            <dd className="Character__value">{character.species}</dd>
+          </div>
+          <div className="Character__item">
+            <dt className="Character__key">Gender</dt>
+            <dd className="Character__value">{character.gender}</dd>
+          </div>
+          <div className="Character__item">
+            <dt className="Character__key">Status</dt>
+            <dd className="Character__value">{character.status}</dd>
+          </div>
+          <div className="Character__item">
+            <dt className="Character__key">Origin</dt>
+            <dd className="Character__value">{character.origin.name}</dd>
+          </div>
+          <div className="Character__item">
+            <dt className="Character__key">Location</dt>
+            <dd className="Character__value">{character.location.name}</dd>
+          </div>
+        </dl>
       </div>
     </div>
   );
