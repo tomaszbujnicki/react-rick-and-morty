@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './CharacterPreview.scss';
+import Reverse from './Reverse';
 
 function CharacterPreview({ character }) {
   return (
@@ -16,7 +17,9 @@ function CharacterPreview({ character }) {
             <p className="CharacterPreview__species">{character.species}</p>
           </header>
         </div>
-        <div className="CharacterPreview__content CharacterPreview__content--reverse"></div>
+        <div className="CharacterPreview__content CharacterPreview__content--reverse">
+          <Reverse character={character} />
+        </div>
       </div>
     </Link>
   );

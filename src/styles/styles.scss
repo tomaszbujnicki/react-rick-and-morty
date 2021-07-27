@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Rick';
+  src: local('Rick'), url(./get_schwifty.ttf) format('truetype');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Zen+Tokyo+Zoo&display=swap');
+
 @import 'variables';
 
 @import 'base';
