@@ -1,4 +1,4 @@
-.CharacterPreview {
+.RotatingCard {
   position: relative;
   width: 300px;
   height: 300px;
@@ -8,7 +8,7 @@
   &:hover &__content {
     transform: perspective(1000px) rotateY(-180deg);
 
-    &--reverse {
+    &--back {
       transform: perspective(1000px) rotateY(0deg);
     }
   }
@@ -24,33 +24,8 @@
     transform: perspective(1000px) rotateY(0deg);
     backface-visibility: hidden;
 
-    &--reverse {
+    &--back {
       transform: perspective(1000px) rotateY(180deg);
     }
-  }
-
-  &__heading {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    color: white;
-    padding: 80px 20px 20px;
-    text-align: right;
-    background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0.6) 60%
-    );
-    pointer-events: none;
-  }
-
-  &__name {
-    font-size: 30px;
-  }
-
-  &__species {
-    font-size: 20px;
-    opacity: 0.6;
   }
 }

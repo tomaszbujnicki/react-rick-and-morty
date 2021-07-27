@@ -5,7 +5,7 @@ import GET from '../../api';
 import Loading from '../../components/Loading';
 import Character from '../../components/Character';
 
-function CharacterPage(props) {
+const CharacterPage = (props) => {
   const id = props.match.params.id;
   const [character, setCharacter] = useState(null);
 
@@ -26,6 +26,6 @@ function CharacterPage(props) {
   }
 
   return <Character character={character} />;
-}
+};
 
 export default CharacterPage;

@@ -10,7 +10,7 @@ import Header from './components/Header';
 import CharacterPage from './pages/CharacterPage';
 import HomePage from './pages/HomePage';
 
-export default function App() {
+const App = () => {
   return (
     <Router>
       <Header />
@@ -25,4 +25,6 @@ export default function App() {
       </div>
     </Router>
   );
-}
+};
+
+export default App;

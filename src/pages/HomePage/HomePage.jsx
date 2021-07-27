@@ -4,7 +4,7 @@ import CharacterList from '../../components/CharacterList';
 import GET from '../../api';
 import './HomePage.scss';
 
-function HomePage() {
+const HomePage = () => {
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState([1]);
 
@@ -20,6 +20,6 @@ function HomePage() {
     return <Loading />;
   }
   return <CharacterList characters={characters} />;
-}
+};
 
 export default HomePage;
