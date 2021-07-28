@@ -9,6 +9,7 @@ import {
 import Header from './components/Header';
 import CharacterPage from './pages/CharacterPage';
 import HomePage from './pages/HomePage';
+import LocationPage from './pages/LocationPage';
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route exact path="/" component={HomePage} />
 
           <Route exact path="/character/:id" component={CharacterPage} />
+          <Route exact path="/location/:id" component={LocationPage} />
 
           <Redirect from="/" to="/" />
         </Switch>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Character.scss';
 
 const Character = ({ character }) => {
@@ -19,16 +20,32 @@ const Character = ({ character }) => {
             <dd className="Character__value">{character.gender}</dd>
           </div>
           <div className="Character__item">
+            <dt className="Character__key">Type</dt>
+            <dd className="Character__value">{character.type || '-'}</dd>
+          </div>
+          <div className="Character__item">
             <dt className="Character__key">Status</dt>
             <dd className="Character__value">{character.status}</dd>
           </div>
           <div className="Character__item">
             <dt className="Character__key">Origin</dt>
-            <dd className="Character__value">{character.origin.name}</dd>
+            {character.origin.name === 'unknown' ? (
+              <dd className="Character__value">{character.origin.name}</dd>
+            ) : (
+              <Link to={'/location/' + getId(character.origin.url)}>
+                <dd className="Character__value">{character.origin.name}</dd>
+              </Link>
+            )}
           </div>
           <div className="Character__item">
             <dt className="Character__key">Location</dt>
-            <dd className="Character__value">{character.location.name}</dd>
+            {character.origin.name === 'unknown' ? (
+              <dd className="Character__value">{character.origin.name}</dd>
+            ) : (
+              <Link to={'/location/' + getId(character.location.url)}>
+                <dd className="Character__value">{character.location.name}</dd>
+              </Link>
+            )}
           </div>
         </dl>
       </div>
@@ -37,3 +54,9 @@ const Character = ({ character }) => {
 };
 
 export default Character;
+
+const getId = (url) => {
+  const urlBase = 'https://rickandmortyapi.com/api/location/';
+  const id = url.replace(urlBase, '');
+  return id;
+};

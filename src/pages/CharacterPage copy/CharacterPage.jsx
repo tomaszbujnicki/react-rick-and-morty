@@ -3,7 +3,7 @@ import './CharacterPage.scss';
 import { Redirect } from 'react-router-dom';
 import GET from '../../api';
 import Loading from '../../components/Loading';
-import Character from './Character';
+import Character from '../CharacterPage/Character';
 
 const CharacterPage = (props) => {
   const id = props.match.params.id;

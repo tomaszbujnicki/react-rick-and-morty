@@ -1,0 +1,46 @@
+.Character {
+  display: flex;
+
+  a:hover {
+    color: var(--green)
+  }
+
+  &__image {
+    border-radius: 50%;
+    margin-top: 140px;
+  }
+
+  &__content {
+    padding: 40px;
+  }
+
+  &__title {
+    font-size: 60px;
+    font-family: 'Zen Tokyo Zoo', cursive;
+    margin-bottom: 20px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: var(--surface);
+    border-radius: 20px;
+    padding: 0 20px;
+  }
+
+  &__key {
+    width: 120px;
+    font-size: 22px;
+    &::after {
+      content: ':';
+    }
+  }
+
+  &__value {
+    font-family: 'Zen Tokyo Zoo', cursive;
+    font-size: 44px;
+    text-transform: lowercase;
+    padding-bottom: 12px;
+  }
+}

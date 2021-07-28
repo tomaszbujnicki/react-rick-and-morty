@@ -6,20 +6,40 @@ import './HomePage.scss';
 
 const HomePage = () => {
   const [characters, setCharacters] = useState([]);
-  const [page, setPage] = useState([1]);
 
   useEffect(() => {
-    GET.characters(page)
-      .then((res) => setCharacters(res.data.results))
+    GET.characters()
+      .then((res) => {
+        const count = res.data.info.count;
+        const arr = getFourRandomNumbers(count);
+        console.log(arr);
+        GET.character(arr).then((res) => {
+          console.log(res);
+          setCharacters(res.data);
+        });
+      })
       .catch((err) => console.log(err));
-  }, [page]);
+  }, []);
 
   console.log(characters);
 
-  if (characters.length === 0) {
-    return <Loading />;
-  }
-  return <CharacterList characters={characters} />;
+  return (
+    <div className="HomePage">
+      <h2>Characters</h2>
+      {characters.length && <CharacterList characters={characters} />}
+      <h2>Locations</h2>
+      <h2>Episodes</h2>
+    </div>
+  );
 };
 
 export default HomePage;
+
+const getFourRandomNumbers = (max) => {
+  const arr = [];
+  while (arr.length < 4) {
+    const random = Math.floor(Math.random() * max);
+    arr.push(random);
+  }
+  return arr;
+};
