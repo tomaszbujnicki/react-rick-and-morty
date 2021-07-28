@@ -1,11 +1,11 @@
 import React from 'react';
-import './ListOfCards.scss';
+import './CardList.scss';
 
-const ListOfCards = ({ items, Component }) => {
+const CardList = ({ items, Component }) => {
   const itemList = Array.isArray(items) ? items : [items];
 
   return (
-    <ul className="ListOfCards">
+    <ul className="CardList">
       {itemList.map((item) => (
         <li key={item.id}>
           <Component item={item} />
@@ -15,4 +15,4 @@ const ListOfCards = ({ items, Component }) => {
   );
 };
 
-export default ListOfCards;
+export default CardList;

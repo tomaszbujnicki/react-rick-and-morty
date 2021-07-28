@@ -5,13 +5,12 @@ import Card from './../Card';
 import { ArticleTitle } from '../Typo';
 
 const LocationCard = ({ item }) => {
-  console.log(item);
   return (
     <Link to={'/location/' + item.id}>
       <Card>
         <div className="LocationCard">
           <header>
-            <ArticleTitle style={{ 'text-align': 'center' }}>
+            <ArticleTitle style={{ 'textAlign': 'center' }}>
               {item.name}
             </ArticleTitle>
             <hr className="LocationCard__line"></hr>

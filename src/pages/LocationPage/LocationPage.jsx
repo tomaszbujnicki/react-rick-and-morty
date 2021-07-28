@@ -5,7 +5,7 @@ import GET from '../../api';
 import Loading from '../../components/Loading';
 import Location from './Location';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
-import ListOfCards from '../../components/ListOfCards';
+import CardList from '../../components/CardList';
 
 const LocationPage = (props) => {
   const id = props.match.params.id;
@@ -46,18 +46,12 @@ const ResidentList = ({ ids }) => {
       .catch(() => setResidents(undefined));
   }, [ids]);
 
-  console.log(residents);
-
-  if (residents === null) return <div></div>;
-
-  if (residents === undefined) return <div></div>;
-
-  if (residents === []) return <div>No residents in this location.</div>;
+  if (!residents) return <div></div>;
 
   return (
     <div className="LocationPage__residents">
       <h2>Residents:</h2>
-      <ListOfCards items={residents} Component={CharacterCard} />
+      <CardList items={residents} Component={CharacterCard} />
     </div>
   );
 };

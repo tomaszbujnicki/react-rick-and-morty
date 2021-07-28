@@ -3,17 +3,23 @@ import './style.css';
 
 export const PageTitle = ({ children, style }) => {
   return (
-    <h1 style={style} className="PageTitle">
-      {children}
-    </h1>
+    <>
+      <h1 style={style} className="PageTitle">
+        {children}
+      </h1>
+      <hr />
+    </>
   );
 };
 
 export const SectionTitle = ({ children, style }) => {
   return (
-    <h2 style={style} className="SectionTitle">
-      {children}
-    </h2>
+    <>
+      <h2 style={style} className="SectionTitle">
+        {children}
+      </h2>
+      <hr />
+    </>
   );
 };
 

@@ -14,7 +14,7 @@ body {
   overflow-y: scroll;
 }
 
-article {
+section {
   padding: 20px 0;
 }
 
@@ -34,7 +34,11 @@ button {
 .container {
   max-width: 1300px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px 10px;
 }
 
-
+.link {
+  &:hover {
+    color: var(--green);
+  }
+}
