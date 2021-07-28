@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loading from '../../components/Loading';
-import CharacterList from '../../components/CharacterList';
+import CharacterCard from '../../components/CharacterCard';
 import GET from '../../api';
 import './CharactersPage.scss';
 
@@ -19,7 +19,7 @@ const CharactersPage = () => {
   if (characters.length === 0) {
     return <Loading />;
   }
-  return <CharacterList characters={characters} />;
+  return <CharacterCard characters={characters} />;
 };
 
 export default CharactersPage;

@@ -14,9 +14,12 @@ body {
   overflow-y: scroll;
 }
 
-.container {
-  max-width: 1300px;
-  margin: 0 auto;
+article {
+  padding: 20px 0;
+}
+
+hr {
+  margin: 10px 0;
 }
 
 a {
@@ -27,3 +30,11 @@ a {
 button {
   cursor: pointer;
 }
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+

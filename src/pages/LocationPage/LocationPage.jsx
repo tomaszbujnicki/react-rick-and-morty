@@ -4,7 +4,8 @@ import { Redirect } from 'react-router-dom';
 import GET from '../../api';
 import Loading from '../../components/Loading';
 import Location from './Location';
-import CharacterList from '../../components/CharacterList/CharacterList';
+import CharacterCard from '../../components/CharacterCard/CharacterCard';
+import ListOfCards from '../../components/ListOfCards';
 
 const LocationPage = (props) => {
   const id = props.match.params.id;
@@ -56,7 +57,7 @@ const ResidentList = ({ ids }) => {
   return (
     <div className="LocationPage__residents">
       <h2>Residents:</h2>
-      <CharacterList characters={residents} />
+      <ListOfCards items={residents} Component={CharacterCard} />
     </div>
   );
 };
