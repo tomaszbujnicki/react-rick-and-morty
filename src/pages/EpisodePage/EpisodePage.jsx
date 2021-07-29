@@ -31,9 +31,13 @@ const EpisodePage = (props) => {
   return (
     <div>
       <PageTitle>{episode.name}</PageTitle>
-      <Episode episode={episode} />
-      <SectionTitle>Characters:</SectionTitle>
-      <ResidentList ids={ids} />
+      <section>
+        <Episode episode={episode} />
+      </section>
+      <section>
+        <SectionTitle>Characters:</SectionTitle>
+        <ResidentList ids={ids} />
+      </section>
     </div>
   );
 };
@@ -51,9 +55,5 @@ const ResidentList = ({ ids }) => {
 
   if (!residents) return <div></div>;
 
-  return (
-    <div className="EpisodePage__residents">
-      <CardList items={residents} Component={CharacterCard} />
-    </div>
-  );
+  return <CardList items={residents} Component={CharacterCard} />;
 };

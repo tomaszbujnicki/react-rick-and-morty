@@ -38,9 +38,13 @@ const LocationPage = (props) => {
   return (
     <div>
       <PageTitle>{location.name}</PageTitle>
-      <Location location={location} />
-      <SectionTitle>Residents:</SectionTitle>
-      {residents}
+      <section>
+        <Location location={location} />
+      </section>
+      <section>
+        <SectionTitle>Residents:</SectionTitle>
+        {residents}
+      </section>
     </div>
   );
 };

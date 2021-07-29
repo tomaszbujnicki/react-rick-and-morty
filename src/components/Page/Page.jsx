@@ -21,11 +21,13 @@ const Page = ({ title, CardComponent, api }) => {
   return (
     <div>
       <PageTitle>{title}</PageTitle>
-      {items.length === 0 ? (
-        <Loading />
-      ) : (
-        <CardList Component={CardComponent} items={items} />
-      )}
+      <section>
+        {items.length === 0 ? (
+          <Loading />
+        ) : (
+          <CardList Component={CardComponent} items={items} />
+        )}
+      </section>
     </div>
   );
 };

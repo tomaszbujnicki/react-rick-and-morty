@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Loading from '../../components/Loading';
 import GET from '../../api';
-import './HomePage.scss';
 import CardList from '../../components/CardList';
 import CharacterCard from '../../components/CharacterCard';
 import LocationCard from '../../components/LocationCard';

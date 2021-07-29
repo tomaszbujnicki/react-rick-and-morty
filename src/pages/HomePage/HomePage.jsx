@@ -1,12 +1,11 @@
 import React from 'react';
-import './HomePage.scss';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import RandomCardList from './RandomCardList';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
-    <div className="HomePage">
+    <div>
       <PageTitle>Rick and Morty</PageTitle>
       <section>
         <Link className="link" to={'/characters'}>
