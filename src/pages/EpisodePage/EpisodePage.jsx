@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import GET from '../../api';
 import Loading from '../../components/Loading';
 import Episode from './Episode';
-import CharacterCard from '../../components/CharacterCard/CharacterCard';
 import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import mapUrlsToId from '../../utils/mapUrlsToId';
+import useItem from '../../hooks/useItem';
+import useItems from '../../hooks/useItems';
 
 const EpisodePage = (props) => {
   const id = props.match.params.id;
-  const [episode, setEpisode] = useState(null);
-
-  useEffect(() => {
-    GET.episode(id)
-      .then((res) => setEpisode(res.data))
-      .catch(() => setEpisode(undefined));
-  }, [id]);
+  const episode = useItem('episode', id);
 
   if (episode === null) {
     return <Loading />;
@@ -45,15 +39,9 @@ const EpisodePage = (props) => {
 export default EpisodePage;
 
 const ResidentList = ({ ids }) => {
-  const [residents, setResidents] = useState(null);
-
-  useEffect(() => {
-    GET.character(ids)
-      .then((res) => setResidents(res.data))
-      .catch(() => setResidents(undefined));
-  }, [ids]);
+  const residents = useItems('character', ids);
 
   if (!residents) return <div></div>;
 
-  return <CardList items={residents} Component={CharacterCard} />;
+  return <CardList items={residents} type={'character'} />;
 };

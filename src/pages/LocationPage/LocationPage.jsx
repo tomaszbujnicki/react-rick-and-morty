@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import GET from '../../api';
 import Loading from '../../components/Loading';
 import Location from './Location';
-import CharacterCard from '../../components/CharacterCard/CharacterCard';
 import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import mapUrlsToId from '../../utils/mapUrlsToId';
+import useItem from '../../hooks/useItem';
+import useItems from '../../hooks/useItems';
 
 const LocationPage = (props) => {
   const id = props.match.params.id;
-  const [location, setLocation] = useState(null);
-
-  useEffect(() => {
-    GET.location(id)
-      .then((res) => setLocation(res.data))
-      .catch(() => setLocation(undefined));
-  }, [id]);
+  const location = useItem('location', id);
 
   if (location === null) {
     return <Loading />;
@@ -52,15 +46,9 @@ const LocationPage = (props) => {
 export default LocationPage;
 
 const ResidentList = ({ ids }) => {
-  const [residents, setResidents] = useState(null);
-
-  useEffect(() => {
-    GET.character(ids)
-      .then((res) => setResidents(res.data))
-      .catch(() => setResidents(undefined));
-  }, [ids]);
+  const residents = useItems('character', ids);
 
   if (!residents) return <div></div>;
 
-  return <CardList items={residents} Component={CharacterCard} />;
+  return <CardList items={residents} type="character" />;
 };

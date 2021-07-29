@@ -2,41 +2,27 @@ import React, { useState, useEffect } from 'react';
 import Loading from '../../components/Loading';
 import GET from '../../api';
 import CardList from '../../components/CardList';
-import CharacterCard from '../../components/CharacterCard';
-import LocationCard from '../../components/LocationCard';
 import getRandomNumbers from '../../utils/getRandomNumber';
-import EpisodeCard from '../../components/EpisodeCard';
-
-const componentCard = {
-  character: CharacterCard,
-  location: LocationCard,
-  episode: EpisodeCard,
-};
+import useItems from '../../hooks/useItems';
 
 const RandomCardList = ({ type = 'character', count = 4 }) => {
-  const [items, setItems] = useState([]);
+  const [ids, setIds] = useState([]);
+  const items = useItems(type, ids);
 
   useEffect(() => {
     GET[type + 's']()
       .then((res) => {
         const maxCount = res.data.info.count;
-        const arr = getRandomNumbers(maxCount, count);
-        GET[type](arr).then((res) => {
-          setItems(res.data);
-        });
+        setIds(getRandomNumbers(maxCount, count));
       })
-      .catch(() => setItems(undefined));
+      .catch(() => setIds(undefined));
   }, [type, count]);
 
-  if (items === undefined) return <div></div>;
+  if (!items) return <div></div>;
 
   return (
     <div>
-      {items.length ? (
-        <CardList items={items} Component={componentCard[type]} />
-      ) : (
-        <Loading />
-      )}
+      {items.length ? <CardList items={items} type={type} /> : <Loading />}
     </div>
   );
 };

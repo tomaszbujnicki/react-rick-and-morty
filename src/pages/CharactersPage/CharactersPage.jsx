@@ -4,7 +4,7 @@ import Page from '../../components/Page';
 
 const CharactersPage = () => {
   return (
-    <Page title="Characters" CardComponent={CharacterCard} api="characters" />
+    <Page title="Characters" CardComponent={CharacterCard} type="character" />
   );
 };
 

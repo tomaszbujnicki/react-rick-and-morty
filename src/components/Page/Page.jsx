@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Loading from '../Loading';
 import CardList from '../CardList';
-import GET from '../../api';
 import { PageTitle } from '../Typo';
+import useItems from '../../hooks/useItems';
 
-const Page = ({ title, CardComponent, api }) => {
-  const [items, setItems] = useState([]);
-  const [page, setPage] = useState(1);
+const Page = ({ title, type }) => {
+  const [arr, setArr] = useState(['1', '2', '3']);
+  const items = useItems(type, arr);
 
-  useEffect(() => {
-    GET[api](page)
-      .then((res) => setItems(res.data.results))
-      .catch(() => setItems(undefined));
-  }, [page, api]);
+  if (items === undefined) return <div>und</div>;
 
-  if (items === undefined) return <div></div>;
-
-  if (items.length === 0) return <Loading />;
+  if (items === null) return <Loading />;
 
   return (
     <div>
@@ -25,7 +19,7 @@ const Page = ({ title, CardComponent, api }) => {
         {items.length === 0 ? (
           <Loading />
         ) : (
-          <CardList Component={CardComponent} items={items} />
+          <CardList type={type} items={items} />
         )}
       </section>
     </div>

@@ -4,7 +4,7 @@ import Page from '../../components/Page';
 
 const LocationsPage = () => {
   return (
-    <Page title="Locations" CardComponent={LocationCard} api="locations" />
+    <Page title="Locations" CardComponent={LocationCard} type="location" />
   );
 };
 

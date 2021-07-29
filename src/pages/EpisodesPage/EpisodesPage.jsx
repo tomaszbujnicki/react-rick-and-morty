@@ -3,7 +3,7 @@ import EpisodeCard from '../../components/EpisodeCard';
 import Page from '../../components/Page';
 
 const EpisodesPage = () => {
-  return <Page title="Episodes" CardComponent={EpisodeCard} api="episodes" />;
+  return <Page title="Episodes" CardComponent={EpisodeCard} type="episode" />;
 };
 
 export default EpisodesPage;

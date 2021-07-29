@@ -33,12 +33,13 @@
     display: flex;
     width: 100%;
     align-items: center;
+    justify-content: space-between;
     margin-top: 10px;
   }
 
   &__key {
-    width: 40%;
     font-size: 16px;
+    margin-right: 10px;
     text-transform: uppercase;
     &::after {
       content: ':';
@@ -46,9 +47,7 @@
   }
 
   &__value {
-    width: 60%;
     font-size: 20px;
     text-align: right;
   }
-
 }
