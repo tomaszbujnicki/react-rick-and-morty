@@ -11,7 +11,6 @@ const CARDS = {
 };
 
 const CardList = ({ items, type }) => {
-  console.log(items, type);
   const itemList = Array.isArray(items) ? items : [items];
 
   return (

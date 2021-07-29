@@ -8,12 +8,10 @@ import {
 
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
-import CharacterPage from './pages/CharacterPage';
-import CharactersPage from './pages/CharactersPage';
 import EpisodePage from './pages/EpisodePage';
-import EpisodesPage from './pages/EpisodesPage';
 import LocationPage from './pages/LocationPage';
-import LocationsPage from './pages/LocationsPage';
+import { EpisodesPage, LocationsPage, CharactersPage } from './pages/ItemsPage';
+import { CharacterPage } from './pages/ItemPage';
 
 const App = () => {
   return (
