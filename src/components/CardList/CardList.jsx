@@ -3,6 +3,7 @@ import './CardList.scss';
 import EpisodeCard from '../EpisodeCard';
 import CharacterCard from '../CharacterCard';
 import LocationCard from '../LocationCard';
+import useItems from '../../hooks/useItems';
 
 const CARDS = {
   character: CharacterCard,
@@ -10,7 +11,11 @@ const CARDS = {
   episode: EpisodeCard,
 };
 
-const CardList = ({ items, type }) => {
+const CardList = ({ type, ids }) => {
+  console.log(ids);
+  const items = useItems(type, ids);
+  console.log(items);
+  if (!items) return <div></div>;
   const itemList = Array.isArray(items) ? items : [items];
 
   return (

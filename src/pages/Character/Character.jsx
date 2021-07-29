@@ -2,48 +2,48 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Character.scss';
 
-const Character = ({ character }) => {
+const Character = ({ item }) => {
   return (
     <div className="Character">
       <div className="Character__content">
-        <img className="Character__image" src={character.image} alt="" />
+        <img className="Character__image" src={item.image} alt="" />
       </div>
       <div className="Character__content">
-        <h1 className="Character__title">{character.name}</h1>
+        <h1 className="Character__title">{item.name}</h1>
         <dl>
           <div className="Character__item">
             <dt className="Character__key">Species</dt>
-            <dd className="Character__value">{character.species}</dd>
+            <dd className="Character__value">{item.species}</dd>
           </div>
           <div className="Character__item">
             <dt className="Character__key">Gender</dt>
-            <dd className="Character__value">{character.gender}</dd>
+            <dd className="Character__value">{item.gender}</dd>
           </div>
           <div className="Character__item">
             <dt className="Character__key">Type</dt>
-            <dd className="Character__value">{character.type || '-'}</dd>
+            <dd className="Character__value">{item.type || '-'}</dd>
           </div>
           <div className="Character__item">
             <dt className="Character__key">Status</dt>
-            <dd className="Character__value">{character.status}</dd>
+            <dd className="Character__value">{item.status}</dd>
           </div>
           <div className="Character__item">
             <dt className="Character__key">Origin</dt>
-            {character.origin.name === 'unknown' ? (
-              <dd className="Character__value">{character.origin.name}</dd>
+            {item.origin.name === 'unknown' ? (
+              <dd className="Character__value">{item.origin.name}</dd>
             ) : (
-              <Link to={'/location/' + getId(character.origin.url)}>
-                <dd className="Character__value">{character.origin.name}</dd>
+              <Link to={'/location/' + getId(item.origin.url)}>
+                <dd className="Character__value">{item.origin.name}</dd>
               </Link>
             )}
           </div>
           <div className="Character__item">
             <dt className="Character__key">Location</dt>
-            {character.origin.name === 'unknown' ? (
-              <dd className="Character__value">{character.origin.name}</dd>
+            {item.origin.name === 'unknown' ? (
+              <dd className="Character__value">{item.origin.name}</dd>
             ) : (
-              <Link to={'/location/' + getId(character.location.url)}>
-                <dd className="Character__value">{character.location.name}</dd>
+              <Link to={'/location/' + getId(item.location.url)}>
+                <dd className="Character__value">{item.location.name}</dd>
               </Link>
             )}
           </div>

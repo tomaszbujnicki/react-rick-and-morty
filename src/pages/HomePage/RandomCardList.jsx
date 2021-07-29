@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Loading from '../../components/Loading';
 import GET from '../../api';
 import CardList from '../../components/CardList';
 import getRandomNumbers from '../../utils/getRandomNumber';
-import useItems from '../../hooks/useItems';
 
 const RandomCardList = ({ type = 'character', count = 4 }) => {
-  const [ids, setIds] = useState([]);
-  const items = useItems(type, ids);
+  const [ids, setIds] = useState(null);
 
   useEffect(() => {
     GET[type + 's']()
@@ -18,13 +15,7 @@ const RandomCardList = ({ type = 'character', count = 4 }) => {
       .catch(() => setIds(undefined));
   }, [type, count]);
 
-  if (!items) return <div></div>;
-
-  return (
-    <div>
-      {items.length ? <CardList items={items} type={type} /> : <Loading />}
-    </div>
-  );
+  return <CardList ids={ids} type={type} />;
 };
 
 export default RandomCardList;
