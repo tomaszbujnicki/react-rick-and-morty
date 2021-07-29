@@ -2,50 +2,43 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import GET from '../../api';
 import Loading from '../../components/Loading';
-import Location from './Location';
+import Episode from './Episode';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
 import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import mapUrlsToId from '../../utils/mapUrlsToId';
 
-const LocationPage = (props) => {
+const EpisodePage = (props) => {
   const id = props.match.params.id;
-  const [location, setLocation] = useState(null);
+  const [episode, setEpisode] = useState(null);
 
   useEffect(() => {
-    GET.location(id)
-      .then((res) => setLocation(res.data))
-      .catch(() => setLocation(undefined));
+    GET.episode(id)
+      .then((res) => setEpisode(res.data))
+      .catch(() => setEpisode(undefined));
   }, [id]);
 
-  if (location === null) {
+  if (episode === null) {
     return <Loading />;
   }
 
-  if (location === undefined) {
+  if (episode === undefined) {
     return <Redirect to="/" />;
   }
 
-  const ids = mapUrlsToId(location.residents);
-
-  const residents =
-    ids.length === 0 ? (
-      <div>No one lives here.</div>
-    ) : (
-      <ResidentList ids={ids} />
-    );
+  const ids = mapUrlsToId(episode.characters);
 
   return (
     <div>
-      <PageTitle>{location.name}</PageTitle>
-      <Location location={location} />
-      <SectionTitle>Residents:</SectionTitle>
-      {residents}
+      <PageTitle>{episode.name}</PageTitle>
+      <Episode episode={episode} />
+      <SectionTitle>Characters:</SectionTitle>
+      <ResidentList ids={ids} />
     </div>
   );
 };
 
-export default LocationPage;
+export default EpisodePage;
 
 const ResidentList = ({ ids }) => {
   const [residents, setResidents] = useState(null);
@@ -58,5 +51,9 @@ const ResidentList = ({ ids }) => {
 
   if (!residents) return <div></div>;
 
-  return <CardList items={residents} Component={CharacterCard} />;
+  return (
+    <div className="EpisodePage__residents">
+      <CardList items={residents} Component={CharacterCard} />
+    </div>
+  );
 };

@@ -24,6 +24,7 @@ const HomePage = () => {
         <Link className="link" to={'/episodes'}>
           <SectionTitle>Episodes</SectionTitle>
         </Link>
+        <RandomCardList type="episode" count="4" />
       </section>
     </div>
   );

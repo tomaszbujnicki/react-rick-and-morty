@@ -6,10 +6,12 @@ import CardList from '../../components/CardList';
 import CharacterCard from '../../components/CharacterCard';
 import LocationCard from '../../components/LocationCard';
 import getRandomNumbers from '../../utils/getRandomNumber';
+import EpisodeCard from '../../components/EpisodeCard';
 
 const componentCard = {
   character: CharacterCard,
   location: LocationCard,
+  episode: EpisodeCard,
 };
 
 const RandomCardList = ({ type = 'character', count = 4 }) => {
