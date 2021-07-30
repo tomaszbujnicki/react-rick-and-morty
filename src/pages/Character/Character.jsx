@@ -1,62 +1,88 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Character.scss';
+import CardList from '../../components/CardList';
+import { PageTitle, SectionTitle } from '../../components/Typo';
+import mapUrlsToIds from '../../utils/mapUrlsToIds';
+import mapUrlToId from '../../utils/mapUrlToId';
+import Card from '../../components/Card';
+
+const List = ({ item }) => {
+  const origin =
+    item.origin.name === 'unknown' ? (
+      item.origin.name
+    ) : (
+      <Link className="link" to={'/location/' + mapUrlToId(item.origin.url)}>
+        {item.origin.name}
+      </Link>
+    );
+  const location =
+    item.location.name === 'unknown' ? (
+      item.location.name
+    ) : (
+      <Link className="link" to={'/location/' + mapUrlToId(item.location.url)}>
+        {item.location.name}
+      </Link>
+    );
+
+  return (
+    <dl className="Character">
+      <div className="definitionItem">
+        <dt>Species</dt>
+        <dd>{item.species}</dd>
+      </div>
+      <div className="definitionItem">
+        <dt>Gender</dt>
+        <dd>{item.gender}</dd>
+      </div>
+      <div className="definitionItem">
+        <dt>Type</dt>
+        <dd>{item.type || '-'}</dd>
+      </div>
+      <div className="definitionItem">
+        <dt>Status</dt>
+        <dd>{item.status}</dd>
+      </div>
+      <div className="definitionItem">
+        <dt>Origin</dt>
+        <dd>{origin}</dd>
+      </div>
+      <div className="definitionItem">
+        <dt>Location</dt>
+        <dd>{location}</dd>
+      </div>
+      <div className="definitionItem">
+        <dt>Episodes</dt>
+        <dd>{item.episode.length}</dd>
+      </div>
+    </dl>
+  );
+};
 
 const Character = ({ item }) => {
+  const ids = mapUrlsToIds(item.episode);
+
   return (
-    <div className="Character">
-      <div className="Character__content">
-        <img className="Character__image" src={item.image} alt="" />
-      </div>
-      <div className="Character__content">
-        <h1 className="Character__title">{item.name}</h1>
-        <dl>
-          <div className="Character__item">
-            <dt className="Character__key">Species</dt>
-            <dd className="Character__value">{item.species}</dd>
+    <div>
+      <PageTitle>{item.name}</PageTitle>
+      <section>
+        <div className="Char">
+          <div className="Char__content">
+            <Card>
+              <img src={item.image} alt="" />
+            </Card>
           </div>
-          <div className="Character__item">
-            <dt className="Character__key">Gender</dt>
-            <dd className="Character__value">{item.gender}</dd>
+          <div className="Char__content Char__content--fluid">
+            <List item={item} />
           </div>
-          <div className="Character__item">
-            <dt className="Character__key">Type</dt>
-            <dd className="Character__value">{item.type || '-'}</dd>
-          </div>
-          <div className="Character__item">
-            <dt className="Character__key">Status</dt>
-            <dd className="Character__value">{item.status}</dd>
-          </div>
-          <div className="Character__item">
-            <dt className="Character__key">Origin</dt>
-            {item.origin.name === 'unknown' ? (
-              <dd className="Character__value">{item.origin.name}</dd>
-            ) : (
-              <Link to={'/location/' + getId(item.origin.url)}>
-                <dd className="Character__value">{item.origin.name}</dd>
-              </Link>
-            )}
-          </div>
-          <div className="Character__item">
-            <dt className="Character__key">Location</dt>
-            {item.origin.name === 'unknown' ? (
-              <dd className="Character__value">{item.origin.name}</dd>
-            ) : (
-              <Link to={'/location/' + getId(item.location.url)}>
-                <dd className="Character__value">{item.location.name}</dd>
-              </Link>
-            )}
-          </div>
-        </dl>
-      </div>
+        </div>
+      </section>
+      <section>
+        <SectionTitle>Episodes:</SectionTitle>
+        <CardList ids={ids} type={'episode'} />
+      </section>
     </div>
   );
 };
 
 export default Character;
-
-const getId = (url) => {
-  const urlBase = 'https://rickandmortyapi.com/api/location/';
-  const id = url.replace(urlBase, '');
-  return id;
-};

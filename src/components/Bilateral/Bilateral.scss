@@ -1,4 +1,4 @@
-.RotatingCard {
+.Bilateral {
   position: relative;
   width: 100%;
   height: 100%;
@@ -16,8 +16,8 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    background-color: white;
-    border: solid 1px var(--green);
+    background-color: transparent;
+    border: inherit;
     border-radius: inherit;
     overflow: hidden;
     transition: transform 1000ms;

@@ -1,30 +1,29 @@
 import React from 'react';
-import './Location.scss';
 import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
-import mapUrlsToId from '../../utils/mapUrlsToId';
+import mapUrlsToIds from '../../utils/mapUrlsToIds';
 
 const List = ({ item }) => {
   return (
-    <dl className="Location">
-      <div className="Location__item">
-        <dt className="Location__key">Type</dt>
-        <dd className="Location__value">{item.type}</dd>
+    <dl>
+      <div className="definitionItem">
+        <dt>Type</dt>
+        <dd>{item.type}</dd>
       </div>
-      <div className="Location__item">
-        <dt className="Location__key">Dimension</dt>
-        <dd className="Location__value">{item.dimension}</dd>
+      <div className="definitionItem">
+        <dt>Dimension</dt>
+        <dd>{item.dimension}</dd>
       </div>
-      <div className="Location__item">
-        <dt className="Location__key">Residents</dt>
-        <dd className="Location__value">{item.residents.length}</dd>
+      <div className="definitionItem">
+        <dt>Residents</dt>
+        <dd>{item.residents.length}</dd>
       </div>
     </dl>
   );
 };
 
 const Location = ({ item }) => {
-  const ids = mapUrlsToId(item.residents);
+  const ids = mapUrlsToIds(item.residents);
 
   const residents =
     ids.length === 0 ? (

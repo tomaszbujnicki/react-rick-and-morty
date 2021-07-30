@@ -1,5 +1,5 @@
 .Header {
-  padding: 60px;
+  padding: 60px 60px 30px 60px;
   background-color: var(--surface);
 
   &__title {
@@ -8,9 +8,15 @@
     color: var(--green);
     font-family: 'Rick', cursive;
     letter-spacing: 40px;
+    margin-bottom: 30px;
   }
 
   &__logo {
     position: absolute;
+  }
+
+  &__search {
+    display: flex;
+    justify-content: center;
   }
 }

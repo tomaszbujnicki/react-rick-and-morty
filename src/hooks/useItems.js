@@ -3,7 +3,6 @@ import GET from '../api';
 
 const useItems = (type, ids) => {
   const [items, setItems] = useState(null);
-  console.log(ids);
 
   useEffect(() => {
     if (
@@ -15,7 +14,6 @@ const useItems = (type, ids) => {
         .then((res) => setItems(res.data))
         .catch(() => setItems(undefined));
     } else {
-      console.log('nope');
       setItems(undefined);
     }
   }, [type, ids]);

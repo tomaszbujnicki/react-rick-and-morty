@@ -1,8 +1,12 @@
 import React from 'react';
 import './Card.scss';
 
-const Card = ({ children }) => {
-  return <div className="Card">{children}</div>;
+const Card = ({ children, style }) => {
+  return (
+    <div className="Card" style={style}>
+      {children}
+    </div>
+  );
 };
 
 export default Card;

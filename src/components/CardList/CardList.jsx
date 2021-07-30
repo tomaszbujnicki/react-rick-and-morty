@@ -12,9 +12,7 @@ const CARDS = {
 };
 
 const CardList = ({ type, ids }) => {
-  console.log(ids);
   const items = useItems(type, ids);
-  console.log(items);
   if (!items) return <div></div>;
   const itemList = Array.isArray(items) ? items : [items];
 

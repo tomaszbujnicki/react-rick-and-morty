@@ -1,14 +1,12 @@
-.Location {
-  &__item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    background-color: var(--surface);
-    border-radius: 20px;
-    padding: 0 20px;
-  }
+.DescriptionElement {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  background-color: var(--surface);
+  border-radius: 20px;
+  padding: 0 20px;
 
-  &__key {
+  &__dt {
     width: 120px;
     font-size: 22px;
     &::after {
@@ -16,7 +14,7 @@
     }
   }
 
-  &__value {
+  &__dd {
     font-family: 'Zen Tokyo Zoo', cursive;
     font-size: 44px;
     text-transform: lowercase;
