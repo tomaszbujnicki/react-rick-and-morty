@@ -7,7 +7,7 @@ const RandomCardList = ({ type = 'character', count = 4 }) => {
   const [ids, setIds] = useState(null);
 
   useEffect(() => {
-    GET[type + 's']()
+    GET[type]()
       .then((res) => {
         const maxCount = res.data.info.count;
         setIds(getRandomNumbers(maxCount, count));
