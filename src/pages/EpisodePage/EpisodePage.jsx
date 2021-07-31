@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import mapUrlsToIds from '../../utils/mapUrlsToIds';
+import useItems from '../../hooks/useItems';
+import CharacterCard from '../../components/CharacterCard';
+import ItemPageFrame from '../../components/ItemPageFrame';
+import useItem from '../../hooks/useItem';
 
 const List = ({ item }) => {
   return (
@@ -22,8 +26,9 @@ const List = ({ item }) => {
   );
 };
 
-const Episode = ({ item }) => {
-  const ids = mapUrlsToIds(item.characters);
+const Content = ({ item }) => {
+  const [ids] = useState(mapUrlsToIds(item.characters));
+  const items = useItems('character', ids);
 
   return (
     <div>
@@ -33,10 +38,15 @@ const Episode = ({ item }) => {
       </section>
       <section>
         <SectionTitle>Characters:</SectionTitle>
-        <CardList ids={ids} type={'character'} />
+        <CardList items={items} card={CharacterCard} />
       </section>
     </div>
   );
 };
 
-export default Episode;
+const EpisodePage = ({ match }) => {
+  const item = useItem('episode', match.params.id);
+  return <ItemPageFrame item={item} Content={Content} />;
+};
+
+export default EpisodePage;

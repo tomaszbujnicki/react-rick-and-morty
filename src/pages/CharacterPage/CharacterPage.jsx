@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Character.scss';
 import CardList from '../../components/CardList';
@@ -6,6 +6,10 @@ import { PageTitle, SectionTitle } from '../../components/Typo';
 import mapUrlsToIds from '../../utils/mapUrlsToIds';
 import mapUrlToId from '../../utils/mapUrlToId';
 import Card from '../../components/Card';
+import useItems from '../../hooks/useItems';
+import EpisodeCard from '../../components/EpisodeCard';
+import ItemPageFrame from '../../components/ItemPageFrame';
+import useItem from '../../hooks/useItem';
 
 const List = ({ item }) => {
   const origin =
@@ -59,8 +63,9 @@ const List = ({ item }) => {
   );
 };
 
-const Character = ({ item }) => {
-  const ids = mapUrlsToIds(item.episode);
+const Content = ({ item }) => {
+  const [ids] = useState(mapUrlsToIds(item.episode));
+  const items = useItems('episode', ids);
 
   return (
     <div>
@@ -79,10 +84,15 @@ const Character = ({ item }) => {
       </section>
       <section>
         <SectionTitle>Episodes:</SectionTitle>
-        <CardList ids={ids} type={'episode'} />
+        <CardList items={items} card={EpisodeCard} />
       </section>
     </div>
   );
 };
 
-export default Character;
+const CharacterPage = ({ match }) => {
+  const item = useItem('character', match.params.id);
+  return <ItemPageFrame item={item} Content={Content} />;
+};
+
+export default CharacterPage;

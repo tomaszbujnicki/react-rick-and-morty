@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import mapUrlsToIds from '../../utils/mapUrlsToIds';
+import useItems from '../../hooks/useItems';
+import CharacterCard from '../../components/CharacterCard';
+import ItemPageFrame from '../../components/ItemPageFrame';
+import useItem from '../../hooks/useItem';
 
 const List = ({ item }) => {
   return (
@@ -22,14 +26,15 @@ const List = ({ item }) => {
   );
 };
 
-const Location = ({ item }) => {
-  const ids = mapUrlsToIds(item.residents);
+const Content = ({ item }) => {
+  const [ids] = useState(mapUrlsToIds(item.residents));
+  const items = useItems('character', ids);
 
   const residents =
     ids.length === 0 ? (
       <div>No one lives here.</div>
     ) : (
-      <CardList ids={ids} type={'character'} />
+      <CardList items={items} card={CharacterCard} />
     );
 
   return (
@@ -46,4 +51,9 @@ const Location = ({ item }) => {
   );
 };
 
-export default Location;
+const LocationPage = ({ match }) => {
+  const item = useItem('location', match.params.id);
+  return <ItemPageFrame item={item} Content={Content} />;
+};
+
+export default LocationPage;

@@ -1,43 +1,62 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import GET from '../../api';
 import './Search.scss';
 
 const Search = () => {
   const [text, setText] = useState('');
   const [type, setType] = useState('character');
+  const [parameter, setParameter] = useState('name');
 
   const saveText = (e) => {
     setText(e.target.value);
   };
 
-  const saveType = (e) => {
-    setType(e.target.value);
+  const saveSelect = (e) => {
+    setParameter(e.target.value.replace(/\w+\|/, ''));
+    setType(e.target.value.replace(/\|\w+/, ''));
   };
 
   const find = (e) => {
     e.preventDefault();
-    console.log(text, type);
+    GET[type](`?${parameter}=${text}`)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
     setText('');
   };
 
   return (
     <form className="Search" onSubmit={find}>
-      <select className="Search__dataList" value={type} onChange={saveType}>
-        <option className="Search__option" value="character">
-          character
-        </option>
-        <option className="Search__option" value="location">
-          location
-        </option>
-        <option className="Search__option" value="episode">
-          episode
-        </option>
-      </select>
       <input
         className="Search__input"
         value={text}
         onChange={saveText}
-        placeholder="Search"
+        placeholder="Search..."
       />
+
+      <select className="Search__dataList" onChange={saveSelect}>
+        <option className="Search__option" value={'character|name'}>
+          character by name
+        </option>
+        <option className="Search__option" value={'character|species'}>
+          character by species
+        </option>
+        <option className="Search__option" value={'location|name'}>
+          location by name
+        </option>
+        <option className="Search__option" value={'location|type'}>
+          location by type
+        </option>
+        <option className="Search__option" value={'location|dimension'}>
+          location by dimension
+        </option>
+        <option className="Search__option" value={'episode|name'}>
+          episode by name
+        </option>
+        <option className="Search__option" value={'episode|code'}>
+          episode by code
+        </option>
+      </select>
+
       <input className="Search__button" type="submit" value="Find!" />
     </form>
   );

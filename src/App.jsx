@@ -8,8 +8,15 @@ import {
 
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
-import { EpisodesPage, LocationsPage, CharactersPage } from './pages/ItemsPage';
-import { CharacterPage, EpisodePage, LocationPage } from './pages/ItemPage';
+import {
+  EpisodesPage,
+  LocationsPage,
+  CharactersPage,
+} from './pages/ItemsPage/ItemsPage';
+
+import CharacterPage from './pages/CharacterPage';
+import EpisodePage from './pages/EpisodePage';
+import LocationPage from './pages/LocationPage';
 
 const App = () => {
   return (
