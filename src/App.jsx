@@ -8,6 +8,7 @@ import {
 
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
+import SearchPage from './pages/SearchPage';
 import {
   EpisodesPage,
   LocationsPage,
@@ -25,6 +26,8 @@ const App = () => {
       <main className="container">
         <Switch>
           <Route exact path="/" component={HomePage} />
+
+          <Route exact path="/search/:type" component={SearchPage} />
 
           <Route exact path="/characters" component={CharactersPage} />
           <Route exact path="/locations" component={LocationsPage} />

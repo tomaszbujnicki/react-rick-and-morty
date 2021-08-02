@@ -3,7 +3,6 @@ import Loading from '../Loading';
 import './CardList.scss';
 
 const CardList = ({ items, card }) => {
-  console.log('CardList: ' + items);
   if (items === null) return <Loading />;
   if (items === undefined) return <div></div>;
 

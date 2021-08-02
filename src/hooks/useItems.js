@@ -3,7 +3,6 @@ import GET from '../api';
 
 const useItems = (type, ids) => {
   const [items, setItems] = useState(null);
-  console.log('useItems 1: ' + items);
 
   useEffect(() => {
     if (
@@ -18,7 +17,7 @@ const useItems = (type, ids) => {
       setItems(undefined);
     }
   }, [type, ids]);
-  console.log('useItems 2: ' + items);
+
   return items;
 };
 
