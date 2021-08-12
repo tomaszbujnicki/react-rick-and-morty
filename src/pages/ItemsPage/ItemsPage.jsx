@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CardList from '../../components/CardList';
 import { PageTitle } from '../../components/Typo';
-import useItems from '../../hooks/useItems';
 import CharacterCard from '../../components/CharacterCard';
 import LocationCard from '../../components/LocationCard';
 import EpisodeCard from '../../components/EpisodeCard';
+import Pagination from '../../components/Pagination/Pagination';
 
 const ItemsPage = ({ title, type, card }) => {
-  const [arr, setArr] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
-  const items = useItems(type, arr);
-
   document.title = title + ' | Rick and Morty';
 
   return (
     <div>
       <PageTitle>{title}</PageTitle>
       <section>
-        <CardList items={items} card={card} />
+        <Pagination
+          query={''}
+          type={type}
+          ListComponent={({ items }) => <CardList card={card} items={items} />}
+        />
       </section>
     </div>
   );
