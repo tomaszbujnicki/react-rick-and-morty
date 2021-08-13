@@ -10,8 +10,8 @@ const CardList = ({ items, card }) => {
 
   return (
     <ul className="CardList">
-      {itemList.map((item) => (
-        <li key={item.id}>{card({ item })}</li>
+      {itemList.map((item, index) => (
+        <li key={index}>{card({ item })}</li>
       ))}
     </ul>
   );

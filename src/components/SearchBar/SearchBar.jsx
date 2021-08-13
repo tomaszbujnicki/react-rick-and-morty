@@ -18,7 +18,7 @@ const SearchBar = (props) => {
 
   const find = (e) => {
     e.preventDefault();
-    props.history.push('/search/' + type + '?' + parameter + '=' + text);
+    props.history.push(`/search/${type}/${parameter}/${text}`);
     setText('');
   };
 

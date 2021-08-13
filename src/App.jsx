@@ -27,15 +27,20 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={HomePage} />
 
-          <Route exact path="/search/:type" component={SearchPage} />
+          <Route
+            strict
+            exact
+            path="/search/:type/:by/:text/:page?"
+            component={SearchPage}
+          />
 
-          <Route exact path="/characters" component={CharactersPage} />
-          <Route exact path="/locations" component={LocationsPage} />
-          <Route exact path="/episodes" component={EpisodesPage} />
+          <Route strict exact path="/characters" component={CharactersPage} />
+          <Route strict exact path="/locations" component={LocationsPage} />
+          <Route strict exact path="/episodes" component={EpisodesPage} />
 
-          <Route exact path="/character/:id" component={CharacterPage} />
-          <Route exact path="/location/:id" component={LocationPage} />
-          <Route exact path="/episode/:id" component={EpisodePage} />
+          <Route strict exact path="/character/:id" component={CharacterPage} />
+          <Route strict exact path="/location/:id" component={LocationPage} />
+          <Route strict exact path="/episode/:id" component={EpisodePage} />
 
           <Redirect from="/" to="/" />
         </Switch>

@@ -6,7 +6,7 @@ const Pagination = ({ type, query, ListComponent }) => {
   const [items, setItems] = useState(null);
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState(null);
-
+  console.log(query, type);
   const next = () => {
     if (page >= pages) return;
     setPage((prev) => prev + 1);
@@ -17,6 +17,7 @@ const Pagination = ({ type, query, ListComponent }) => {
   };
 
   useEffect(() => {
+    console.log(type, '?page=' + page + '&' + query);
     GET[type]('?page=' + page + '&' + query)
       .then((res) => {
         setItems(res.data.results);

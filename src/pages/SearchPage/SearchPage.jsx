@@ -4,9 +4,9 @@ import CardList from '../../components/CardList';
 import CharacterCard from '../../components/CharacterCard';
 import LocationCard from '../../components/LocationCard';
 import EpisodeCard from '../../components/EpisodeCard';
-import { useLocation } from 'react-router-dom';
 import { PageTitle, SectionTitle } from '../../components/Typo';
-import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter';
+import Pagination from '../../components/Pagination2';
+import { Redirect } from 'react-router-dom';
 
 const card = {
   character: CharacterCard,
@@ -14,46 +14,59 @@ const card = {
   episode: EpisodeCard,
 };
 
-const SearchPage = (params) => {
-  const location = useLocation();
-  const query = location.search;
-  const type = params.match.params.type;
+const getPage = (str) => {
+  if (str === undefined) return 1;
+  if (str === '0') return undefined;
+  if (/\D/.test(str)) return undefined;
+  return Number(str);
+};
 
-  const [state, setState] = useState({
+const SearchPage = ({ match }) => {
+  const type = match.params.type;
+  const by = match.params.by;
+  const text = match.params.text;
+  const page = getPage(match.params.page);
+  const route = `/search/${type}/${by}/${text}/`;
+  const query = `?${by}=${text}&page=${page}`;
+
+  const [listState, setListState] = useState({
     items: null,
-    display: false,
-    query: location.search,
-    type: params.match.params.type,
+    pages: null,
+    query: query,
+    type: type,
   });
 
   useEffect(() => {
-    setState({ items: null });
     GET[type](query)
       .then((res) =>
-        setState({
+        setListState({
           items: res.data.results,
+          pages: res.data.info.pages,
           query: query,
           type: type,
         })
       )
-      .catch(() => setState({ items: undefined, query: query, type: type }));
+      .catch(() =>
+        setListState({ items: undefined, query: query, type: type })
+      );
   }, [type, query]);
 
+  if (page === undefined) return <Redirect to="/" />;
+
   let results = '';
-  if (state.items === null) results = 'Searching...';
-  if (state.items === undefined) results = 'Found nothing';
-  if (state.items)
-    results = <CardList items={state.items} card={card[state.type]} />;
+  if (listState.items === null) results = 'Searching...';
+  if (listState.items === undefined) results = 'Found nothing';
+  if (listState.items)
+    results = <CardList items={listState.items} card={card[listState.type]} />;
 
   return (
     <>
-      <PageTitle>
-        {capitalizeFirstLetter(type)} search results by {query.match(/\w+/)}
-      </PageTitle>
+      <PageTitle>{`Search ${type} by ${by}`}</PageTitle>
+      {listState.pages > 1 && (
+        <Pagination page={page} pageCount={listState.pages} route={route} />
+      )}
       <section>
-        <SectionTitle>
-          {query.replace(/^\?\w+=/, '').replace(/%20/, ' ')}
-        </SectionTitle>
+        <SectionTitle>{`Results for ${text}`}</SectionTitle>
         {results}
       </section>
     </>
