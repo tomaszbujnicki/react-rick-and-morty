@@ -34,9 +34,24 @@ const App = () => {
             component={SearchPage}
           />
 
-          <Route strict exact path="/characters" component={CharactersPage} />
-          <Route strict exact path="/locations" component={LocationsPage} />
-          <Route strict exact path="/episodes" component={EpisodesPage} />
+          <Route
+            strict
+            exact
+            path="/characters/:page?"
+            component={CharactersPage}
+          />
+          <Route
+            strict
+            exact
+            path="/locations/:page?"
+            component={LocationsPage}
+          />
+          <Route
+            strict
+            exact
+            path="/episodes/:page?"
+            component={EpisodesPage}
+          />
 
           <Route strict exact path="/character/:id" component={CharacterPage} />
           <Route strict exact path="/location/:id" component={LocationPage} />

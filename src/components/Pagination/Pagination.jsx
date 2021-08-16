@@ -1,49 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import GET from '../../api';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './Pagination.scss';
 
-const Pagination = ({ type, query, ListComponent }) => {
-  const [items, setItems] = useState(null);
-  const [page, setPage] = useState(1);
-  const [pages, setPages] = useState(null);
-  console.log(query, type);
-  const next = () => {
-    if (page >= pages) return;
-    setPage((prev) => prev + 1);
-  };
-  const prev = () => {
-    if (page <= 1) return;
-    setPage((prev) => prev - 1);
-  };
-
-  useEffect(() => {
-    console.log(type, '?page=' + page + '&' + query);
-    GET[type]('?page=' + page + '&' + query)
-      .then((res) => {
-        setItems(res.data.results);
-        setPages(res.data.info.pages);
-      })
-      .catch(() => setItems(undefined));
-  }, [type, page, query]);
+const Pagination = ({ page, pageCount, route }) => {
+  const links = [];
+  for (let i = 1; i <= pageCount; i++) {
+    links.push(
+      <li key={i}>
+        <Link
+          to={route + i}
+          className={`Pagination__element ${i === page ? 'active' : ''}`}
+        >
+          {i}
+        </Link>
+      </li>
+    );
+  }
+  const prev = (
+    <li key="prev">
+      {page > 1 ? (
+        <Link to={route + (page - 1)} className="Pagination__element">
+          {'<'}
+        </Link>
+      ) : (
+        <Link
+          onClick={(e) => e.preventDefault()}
+          to={''}
+          className="Pagination__element disabled"
+        >
+          {'<'}
+        </Link>
+      )}
+    </li>
+  );
+  const next = (
+    <li key="next">
+      {page < pageCount ? (
+        <Link to={route + (page + 1)} className="Pagination__element">
+          {'>'}
+        </Link>
+      ) : (
+        <Link
+          onClick={(e) => e.preventDefault()}
+          to={''}
+          className="Pagination__element disabled"
+        >
+          {'>'}
+        </Link>
+      )}
+    </li>
+  );
 
   return (
-    <div className="Pagination">
-      <ListComponent items={items} />
-      <button
-        disabled={page <= 1}
-        style={{ width: 50, height: 20 }}
-        onClick={prev}
-      >
-        {'<-'}
-      </button>
-      <button
-        disabled={page >= pages}
-        style={{ width: 50, height: 20 }}
-        onClick={next}
-      >
-        {'->'}
-      </button>
-    </div>
+    <ul className="Pagination">
+      {prev}
+      {links}
+      {next}
+    </ul>
   );
 };
 

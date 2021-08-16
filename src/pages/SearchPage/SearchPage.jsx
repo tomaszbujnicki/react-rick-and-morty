@@ -5,8 +5,9 @@ import CharacterCard from '../../components/CharacterCard';
 import LocationCard from '../../components/LocationCard';
 import EpisodeCard from '../../components/EpisodeCard';
 import { PageTitle, SectionTitle } from '../../components/Typo';
-import Pagination from '../../components/Pagination2';
+import Pagination from '../../components/Pagination';
 import { Redirect } from 'react-router-dom';
+import getValidParams from '../../utils/getValidParams';
 
 const card = {
   character: CharacterCard,
@@ -14,25 +15,15 @@ const card = {
   episode: EpisodeCard,
 };
 
-const getPage = (str) => {
-  if (str === undefined) return 1;
-  if (str === '0') return undefined;
-  if (/\D/.test(str)) return undefined;
-  return Number(str);
-};
-
 const SearchPage = ({ match }) => {
-  const type = match.params.type;
-  const by = match.params.by;
-  const text = match.params.text;
-  const page = getPage(match.params.page);
+  const { type, by, text, page } = getValidParams(match);
+
   const route = `/search/${type}/${by}/${text}/`;
   const query = `?${by}=${text}&page=${page}`;
 
   const [listState, setListState] = useState({
     items: null,
     pages: null,
-    query: query,
     type: type,
   });
 
@@ -42,13 +33,10 @@ const SearchPage = ({ match }) => {
         setListState({
           items: res.data.results,
           pages: res.data.info.pages,
-          query: query,
           type: type,
         })
       )
-      .catch(() =>
-        setListState({ items: undefined, query: query, type: type })
-      );
+      .catch(() => setListState({ items: undefined, type: type }));
   }, [type, query]);
 
   if (page === undefined) return <Redirect to="/" />;
@@ -62,11 +50,11 @@ const SearchPage = ({ match }) => {
   return (
     <>
       <PageTitle>{`Search ${type} by ${by}`}</PageTitle>
-      {listState.pages > 1 && (
-        <Pagination page={page} pageCount={listState.pages} route={route} />
-      )}
       <section>
         <SectionTitle>{`Results for ${text}`}</SectionTitle>
+        {listState.pages > 1 && (
+          <Pagination page={page} pageCount={listState.pages} route={route} />
+        )}
         {results}
       </section>
     </>

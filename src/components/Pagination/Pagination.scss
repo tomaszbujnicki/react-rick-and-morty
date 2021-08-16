@@ -1,0 +1,33 @@
+.Pagination {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+  &__element {
+    width: 40px;
+    height: 25px;
+    display: block;
+    border: solid 1px var(--highlighted-surface);
+    text-align: center;
+    line-height: 25px;
+    font-size: 16px;
+  }
+
+  &__element:hover {
+    background-color: var(--green);
+  }
+
+  .active {
+    border: solid 2px var(--green);
+    line-height: 23px;
+  }
+
+  .disabled {
+    cursor: default;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
+}
