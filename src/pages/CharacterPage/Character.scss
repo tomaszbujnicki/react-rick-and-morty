@@ -1,11 +1,11 @@
 .Char {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   position: relative;
 
-  &__image {
-    padding: 20px;
+  @media only screen and (min-width: 720px) {
+    flex-direction: row;
   }
 
   &__content {

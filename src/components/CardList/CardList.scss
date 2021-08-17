@@ -2,6 +2,8 @@
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
+  justify-content: center;
 
   &__button {
     padding: 14px;

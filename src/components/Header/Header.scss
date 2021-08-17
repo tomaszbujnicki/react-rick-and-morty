@@ -1,18 +1,39 @@
 .Header {
-  padding: 60px 60px 30px 60px;
+  padding: 30px 30px 15px 30px;
   background-color: var(--surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media only screen and (min-width: 480px) {
+  }
+  @media only screen and (min-width: 1200px) {
+    padding: 60px 30px 30px;
+  }
 
   &__title {
-    font-size: 60px;
+    font-size: 32px;
     text-align: center;
     color: var(--green);
     font-family: 'Rick', cursive;
-    letter-spacing: 40px;
+    letter-spacing: 20px;
     margin-bottom: 30px;
+    @media only screen and (min-width: 480px) {
+      font-size: 48px;
+      letter-spacing: 30px;
+    }
+    @media only screen and (min-width: 720px) {
+      font-size: 60px;
+      letter-spacing: 40px;
+    }
   }
 
   &__logo {
-    position: absolute;
+    @media only screen and (min-width: 1200px) {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
   }
 
   &__search-bar {
