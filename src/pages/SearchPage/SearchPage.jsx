@@ -5,12 +5,14 @@ import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import Pagination from '../../components/Pagination';
 import getValidParams from '../../utils/getValidParams';
+import useSeo from '../../hooks/useSeo';
 
 const SearchPage = ({ match }) => {
   const { type, by, text, page } = getValidParams(match);
-
   const route = `/search/${type}/${by}/${text}/`;
   const query = `?${by}=${text}&page=${page}`;
+
+  useSeo({ title: 'Search ' + text });
 
   const [listState, setListState] = useState({
     items: null,

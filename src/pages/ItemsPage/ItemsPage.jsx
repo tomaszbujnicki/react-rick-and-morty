@@ -4,12 +4,14 @@ import { PageTitle } from '../../components/Typo';
 import Pagination from '../../components/Pagination';
 import GET from '../../api';
 import getValidParams from '../../utils/getValidParams';
+import useSeo from '../../hooks/useSeo';
 
 const ItemsPage = ({ title, type, match }) => {
-  document.title = title + ' | Rick and Morty';
   const { page } = getValidParams(match);
   const [items, setItems] = useState(null);
   const [pages, setPages] = useState(null);
+
+  useSeo({ title });
 
   useEffect(() => {
     GET[type](`?page=${page}`)

@@ -2,8 +2,10 @@ import React from 'react';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import RandomCardList from './RandomCardList';
 import { Link } from 'react-router-dom';
+import useSeo from '../../hooks/useSeo';
 
 const HomePage = () => {
+  useSeo({});
   return (
     <div>
       <PageTitle>Rick and Morty</PageTitle>
