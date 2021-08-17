@@ -3,7 +3,6 @@ import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import mapUrlsToIds from '../../utils/mapUrlsToIds';
 import useItems from '../../hooks/useItems';
-import CharacterCard from '../../components/CharacterCard';
 import ItemPageFrame from '../../components/ItemPageFrame';
 import useItem from '../../hooks/useItem';
 
@@ -38,7 +37,7 @@ const Content = ({ item }) => {
       </section>
       <section>
         <SectionTitle>Characters:</SectionTitle>
-        <CardList items={items} card={CharacterCard} />
+        <CardList items={items} type={'character'} />
       </section>
     </div>
   );

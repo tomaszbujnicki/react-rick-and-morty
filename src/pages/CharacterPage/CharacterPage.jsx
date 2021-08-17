@@ -7,7 +7,6 @@ import mapUrlsToIds from '../../utils/mapUrlsToIds';
 import mapUrlToId from '../../utils/mapUrlToId';
 import Card from '../../components/Card';
 import useItems from '../../hooks/useItems';
-import EpisodeCard from '../../components/EpisodeCard';
 import ItemPageFrame from '../../components/ItemPageFrame';
 import useItem from '../../hooks/useItem';
 
@@ -84,7 +83,7 @@ const Content = ({ item }) => {
       </section>
       <section>
         <SectionTitle>Episodes:</SectionTitle>
-        <CardList items={items} card={EpisodeCard} />
+        <CardList items={items} type={'episode'} />
       </section>
     </div>
   );

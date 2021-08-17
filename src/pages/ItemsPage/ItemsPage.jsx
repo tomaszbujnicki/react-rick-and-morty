@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import CardList from '../../components/CardList';
 import { PageTitle } from '../../components/Typo';
-import CharacterCard from '../../components/CharacterCard';
-import LocationCard from '../../components/LocationCard';
-import EpisodeCard from '../../components/EpisodeCard';
 import Pagination from '../../components/Pagination';
 import GET from '../../api';
 import getValidParams from '../../utils/getValidParams';
 
-const ItemsPage = ({ title, type, card, match }) => {
+const ItemsPage = ({ title, type, match }) => {
   document.title = title + ' | Rick and Morty';
   const { page } = getValidParams(match);
   const [items, setItems] = useState(null);
@@ -21,48 +18,27 @@ const ItemsPage = ({ title, type, card, match }) => {
         setPages(res.data.info.pages);
       })
       .catch(() => setItems(undefined));
-  }, [page]);
+  }, [page, type]);
 
   return (
     <div>
       <PageTitle>{title}</PageTitle>
       <section>
         <Pagination page={page} pageCount={pages} route={`/${type}s/`} />
-        <CardList items={items} card={card} />
+        <CardList items={items} type={type} />
       </section>
     </div>
   );
 };
 
 export const CharactersPage = ({ match }) => {
-  return (
-    <ItemsPage
-      title="Characters"
-      type="character"
-      card={CharacterCard}
-      match={match}
-    />
-  );
+  return <ItemsPage title="Characters" type="character" match={match} />;
 };
 
 export const LocationsPage = ({ match }) => {
-  return (
-    <ItemsPage
-      title="Locations"
-      type="location"
-      card={LocationCard}
-      match={match}
-    />
-  );
+  return <ItemsPage title="Locations" type="location" match={match} />;
 };
 
 export const EpisodesPage = ({ match }) => {
-  return (
-    <ItemsPage
-      title="Episodes"
-      type="episode"
-      card={EpisodeCard}
-      match={match}
-    />
-  );
+  return <ItemsPage title="Episodes" type="episode" match={match} />;
 };

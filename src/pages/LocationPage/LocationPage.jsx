@@ -3,7 +3,6 @@ import CardList from '../../components/CardList';
 import { PageTitle, SectionTitle } from '../../components/Typo';
 import mapUrlsToIds from '../../utils/mapUrlsToIds';
 import useItems from '../../hooks/useItems';
-import CharacterCard from '../../components/CharacterCard';
 import ItemPageFrame from '../../components/ItemPageFrame';
 import useItem from '../../hooks/useItem';
 
@@ -34,7 +33,7 @@ const Content = ({ item }) => {
     ids.length === 0 ? (
       <div>No one lives here.</div>
     ) : (
-      <CardList items={items} card={CharacterCard} />
+      <CardList items={items} type={'character'} />
     );
 
   return (
