@@ -21,18 +21,22 @@ const SearchPage = ({ match }) => {
   });
 
   useEffect(() => {
-    GET[type](query)
-      .then((res) =>
-        setListState({
-          items: res.data.results,
-          pages: res.data.info.pages,
-          type: type,
-        })
-      )
-      .catch(() => setListState({ items: undefined, type: type }));
-  }, [type, query]);
+    if (![type, by, text, page].includes(undefined)) {
+      GET[type](query)
+        .then((res) =>
+          setListState({
+            items: res.data.results,
+            pages: res.data.info.pages,
+            type: type,
+          })
+        )
+        .catch(() => {
+          setListState({ items: undefined, type: type });
+        });
+    }
+  }, [type, by, text, page, query]);
 
-  if (page === undefined) return <Redirect to="/" />;
+  if ([type, by, text, page].includes(undefined)) return <Redirect to="/" />;
 
   let results = '';
   if (listState.items === null) results = 'Searching...';

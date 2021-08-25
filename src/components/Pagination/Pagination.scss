@@ -15,11 +15,11 @@
   }
 
   &__element:hover {
-    background-color: var(--green);
+    background-color: var(--primary);
   }
 
   .active {
-    border: solid 2px var(--green);
+    border: solid 2px var(--primary);
     line-height: 23px;
   }
 

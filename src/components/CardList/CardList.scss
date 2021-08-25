@@ -7,14 +7,14 @@
 
   &__button {
     padding: 14px;
-    border: var(--green) solid 1px;
+    border: var(--primary) solid 1px;
     background: transparent;
-    color: var(--green);
+    color: var(--primary);
     font-size: 14px;
 
     &:hover {
-      background: var(--green);
-      color: var(--on-surface);
+      background: var(--primary);
+      color: var(--on-primary);
       cursor: pointer;
     }
   }

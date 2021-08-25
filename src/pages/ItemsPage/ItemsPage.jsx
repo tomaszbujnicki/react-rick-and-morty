@@ -5,6 +5,7 @@ import Pagination from '../../components/Pagination';
 import GET from '../../api';
 import getValidParams from '../../utils/getValidParams';
 import useSeo from '../../hooks/useSeo';
+import { Redirect } from 'react-router-dom';
 
 const ItemsPage = ({ title, type, match }) => {
   const { page } = getValidParams(match);
@@ -21,6 +22,9 @@ const ItemsPage = ({ title, type, match }) => {
       })
       .catch(() => setItems(undefined));
   }, [page, type]);
+
+  if (page === undefined) return <Redirect to={`/${type}s`} />;
+  if (items === undefined) return <Redirect to={`/`} />;
 
   return (
     <div>

@@ -1,5 +1,5 @@
 const types = ['character', 'location', 'episode'];
-const by = ['name', 'species', 'code', 'type', 'dimension'];
+const by = ['name', 'species', 'episode', 'type', 'dimension'];
 
 const getPage = (param) => {
   if (param === undefined) return 1;
@@ -19,7 +19,9 @@ const getBy = (param) => {
 };
 
 const getText = (param) => {
-  return param.replace(/[^a-zA-Z0-9_-\s]/g, '');
+  const str = param.replace(/[^a-zA-Z0-9_-\s]/g, '');
+  if (str === '') return undefined;
+  return str;
 };
 
 const getParam = {
