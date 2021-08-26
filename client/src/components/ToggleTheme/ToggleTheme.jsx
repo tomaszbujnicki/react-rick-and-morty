@@ -38,7 +38,7 @@ const ToggleTheme = () => {
 
   return (
     <button className="ToggleTheme" onClick={toggleTheme}>
-      Toggle
+      Toggleee
     </button>
   );
 };
