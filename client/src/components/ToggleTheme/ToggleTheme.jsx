@@ -26,6 +26,8 @@ const ToggleTheme = () => {
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === darkTheme ? lightTheme : darkTheme));
+    const icons = document.querySelectorAll('.ToggleTheme__icon');
+    icons.forEach((icon) => icon.classList.toggle('hide'));
   };
 
   useEffect(() => {
@@ -38,7 +40,8 @@ const ToggleTheme = () => {
 
   return (
     <button className="ToggleTheme" onClick={toggleTheme}>
-      Toggleee
+      <span className="ToggleTheme__icon">🌜</span>
+      <span className="ToggleTheme__icon hide">🌞</span>
     </button>
   );
 };

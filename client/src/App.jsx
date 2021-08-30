@@ -6,6 +6,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 
+import StickyNavBar from './components/StickyNavBar';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
@@ -22,6 +23,7 @@ import LocationPage from './pages/LocationPage';
 const App = () => {
   return (
     <Router>
+      <StickyNavBar />
       <Header />
       <main className="container">
         <Switch>
